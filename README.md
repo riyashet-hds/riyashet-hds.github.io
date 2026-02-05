@@ -1,153 +1,225 @@
-# riyashet-hds.github.io
+# Portfolio Website - Minimal Version
 
-Personal research portfolio website for Riya Shet, MSc Health Data Science student at University of Birmingham.
+This is the **minimal, clean design** alternative for your GitHub Pages portfolio.
 
-**Live Website:** https://riyashet-hds.github.io
-
----
-
-## About This Site
-
-This is a GitHub Pages website showcasing research projects, technical skills, and dissertation interests in health data science, with focus on machine learning applications to healthcare operations.
-
-### Features
-
-- **Responsive Design:** Works on desktop, tablet, and mobile devices
-- **Clean Academic Aesthetic:** Professional research portfolio layout
-- **Project Showcases:** Featured research projects with technical details
-- **Skills Overview:** Comprehensive technical competencies display
-- **Contact Information:** Easy ways to connect for research collaborations
+**Live URL (after deployment):** https://riyashet-hds.github.io
 
 ---
 
-## Tech Stack
+## Design Philosophy
 
-- **HTML5:** Semantic markup
-- **CSS3:** Custom styling with responsive design
-- **GitHub Pages:** Free static site hosting
-- **No frameworks:** Vanilla HTML/CSS for simplicity and speed
-
----
-
-## Repository Structure
-
-```
-riyashet-hds.github.io/
-├── index.html          # Main website page
-├── styles.css          # All styling
-└── README.md          # This file
-```
+This version features:
+- **Minimal aesthetic:** Black text on white background, lots of whitespace
+- **Typography-focused:** Clean fonts (Inter), emphasis on readability
+- **Understated elegance:** Professional without being flashy
+- **Modern developer portfolio style:** Similar to contemporary tech/research portfolios
 
 ---
 
-## Local Development
+## Comparison: Two Design Options
 
-To preview changes locally before pushing:
+You now have **two complete website designs** to choose from:
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/riyashet-hds/riyashet-hds.github.io.git
-   cd riyashet-hds.github.io
-   ```
+### Version 1: Academic/Colorful (Purple Gradient)
+**Aesthetic:** Conference poster, academic presentation, energetic
+- Colorful purple gradient hero section
+- More visual hierarchy with colors
+- Boxed project cards with hover effects
+- Skills shown in tag clouds
+- More "polished presentation" feel
 
-2. Open `index.html` in your web browser
+**Best for:** Making a strong visual impression, standing out in crowded spaces, academic conferences
 
-3. Make edits to `index.html` or `styles.css`
+### Version 2: Minimal/Clean (This Version)
+**Aesthetic:** Modern portfolio, typography-first, understated
+- Clean black/white with subtle blue accent
+- Lots of whitespace and breathing room
+- Simple underlined sections instead of cards
+- Content speaks for itself
+- More "designer/developer portfolio" feel
 
-4. Refresh browser to see changes
+**Best for:** Professional subtlety, letting your work speak, modern tech aesthetic
 
-5. When satisfied, commit and push:
+---
+
+## Which Should You Use?
+
+**Choose Version 1 (Colorful) if you want to:**
+- Make a bold visual statement
+- Stand out in a crowded career fair
+- Appeal to a broader, less technical audience
+- Show enthusiasm and energy
+
+**Choose Version 2 (Minimal) if you want to:**
+- Project sophisticated professionalism
+- Appeal to technical/academic audiences
+- Follow modern portfolio design trends
+- Let your projects be the focus, not the design
+
+**My recommendation:** Version 2 (Minimal) for dissertation supervisor seeking. It's more aligned with how serious researchers present themselves online. Version 1 for career fairs and industry networking.
+
+---
+
+## Deploying This Version
+
+Follow the exact same deployment process as Version 1:
+
+1. Copy these files to your `riyashet-hds.github.io` folder:
+   - `index.html` (from this version)
+   - `styles.css` (from this version)
+   - `README.md` (optional - from either version)
+
+2. Run git commands:
    ```bash
    git add .
-   git commit -m "Update website content"
+   git commit -m "Deploy minimal portfolio design"
    git push origin main
    ```
 
-GitHub Pages will automatically deploy your changes within a few minutes.
+3. Wait 1-3 minutes and visit https://riyashet-hds.github.io
 
 ---
 
-## Updating Content
+## Customizing Colors
 
-### Changing Personal Information
+To change the accent color (currently blue):
 
-Edit `index.html` and search for these sections:
+1. Open `styles.css`
+2. Find the `:root` section at the top
+3. Change `--accent: #0066cc;` to your preferred color
+4. Save and redeploy
 
-- **Contact links:** Find the GitHub and LinkedIn URLs
-- **About text:** Located in the `<section id="about">` 
-- **Research interests:** Update the list in the About section
-
-### Adding a New Project
-
-Copy one of the existing `.project-card` divs in the Projects section and update:
-- Project title
-- Description
-- Technologies used (`.tech-tag` elements)
-- Repository link
-
-### Modifying Styling
-
-Edit `styles.css` to change:
-- **Colors:** Search for color values like `#667eea` (purple theme)
-- **Fonts:** Modify the `font-family` in the `body` selector
-- **Spacing:** Adjust `padding` and `margin` values
-- **Layout:** Change `grid-template-columns` for responsive breakpoints
+Suggested alternatives:
+- Green: `#059669`
+- Red: `#dc2626`
+- Purple: `#7c3aed`
+- Teal: `#0891b2`
 
 ---
 
-## Color Scheme
+## Font Information
 
-Primary colors used:
-- **Purple gradient:** `#667eea` to `#764ba2` (hero section)
-- **Blue links:** `#0066cc`
-- **Dark text:** `#2c3e50`
-- **Light backgrounds:** `#f8f9fa`
+This version uses **Inter** font from Google Fonts (loaded from CDN).
+- Lightweight, modern sans-serif
+- Optimized for screen reading
+- Professional tech/academic standard
 
----
-
-## Deployment
-
-This site is automatically deployed via GitHub Pages. Any push to the `main` branch triggers a new deployment.
-
-**Live URL:** https://riyashet-hds.github.io
-
-Typical deployment time: 1-3 minutes after push.
+If you want to use a different font, replace the Google Fonts link in `<head>` and update `font-family` in CSS.
 
 ---
 
-## Purpose
+## Structure
 
-This website serves as:
+Same sections as Version 1:
+- Hero (name + tagline)
+- About (research interests + sidebar info)
+- Work (three projects)
+- Skills (technical capabilities)
+- Contact (links + location)
+- Footer
 
-1. **Research Portfolio:** Showcase for completed coursework projects
-2. **Supervisor Seeking Tool:** Professional presence for dissertation supervisor search
-3. **Career Networking:** Shareable link for career events and professional connections
-4. **Project Documentation Hub:** Central access point to all GitHub repositories
-
----
-
-## Maintenance
-
-**Last Updated:** February 2026
-
-Update the "Last updated" text in the footer when making significant content changes.
+But with cleaner, more minimal styling.
 
 ---
 
-## Contact
+## Responsive Design
 
-**Riya Shet**  
-MSc Health Data Science Student  
-University of Birmingham
+Fully responsive - automatically adapts to:
+- Desktop (900px+ optimal viewing width)
+- Tablet (768px)
+- Mobile (480px and below)
 
-- GitHub: [@riyashet-hds](https://github.com/riyashet-hds)
-- LinkedIn: [linkedin.com/in/riyashet](https://www.linkedin.com/in/riyashet)
-- Website: [riyashet-hds.github.io](https://riyashet-hds.github.io)
+Navigation collapses to single column on mobile. All content remains accessible.
 
 ---
 
-## License
+## Technical Details
 
-© 2026 Riya Shet. All rights reserved.
+- **Pure HTML/CSS** - No JavaScript frameworks
+- **Google Fonts** - One external dependency (Inter font)
+- **Lightweight** - Fast loading, minimal assets
+- **Accessible** - Semantic HTML, keyboard navigation support
+- **SEO-friendly** - Proper meta tags, heading hierarchy
 
-This website's design and content are personal intellectual property. Code may be referenced for educational purposes with attribution.
+---
+
+## Switching Between Versions Later
+
+You can switch designs anytime:
+
+1. Keep both sets of files in separate folders on your computer
+2. When you want to switch, just copy the files from the version you want
+3. Git add, commit, push
+4. Your site updates in 1-2 minutes
+
+No permanent commitment to either design!
+
+---
+
+## My Honest Opinion
+
+For **dissertation supervisor seeking specifically**, I'd go with **Version 2 (Minimal)**. Here's why:
+
+**Academic researchers typically prefer:**
+- Clean, simple, content-focused
+- No flashy colors or effects
+- Easy to read and navigate
+- Professional without trying too hard
+
+**This minimal version signals:**
+- "I care about substance over style"
+- "I understand modern design conventions"
+- "I'm confident in my work"
+- "I'm a serious researcher"
+
+**The colorful version signals:**
+- "I'm enthusiastic and energetic"
+- "I want to catch your attention"
+- "I care about visual presentation"
+- "I'm accessible and friendly"
+
+Both are good! But for Birmingham professors evaluating potential dissertation students, subtle professionalism (Version 2) might resonate more than energetic presentation (Version 1).
+
+**That said**, if you just *like* Version 1 better, use it! Your comfort and authentic preference matter most.
+
+---
+
+## What's the Same in Both Versions?
+
+- All the same content
+- All the same information
+- Same project descriptions
+- Same links to repositories
+- Same "seeking supervisor" messaging
+- Same responsive behavior
+- Same deployment process
+
+**Only difference:** Visual design and aesthetic feel.
+
+---
+
+## Testing Both Locally
+
+You can preview both designs on your computer before deciding:
+
+**Test Version 1:**
+1. Open `index.html` from Version 1 folder in your browser
+2. Evaluate how it feels
+
+**Test Version 2:**
+1. Open `index.html` from Version 2 folder in your browser
+2. Evaluate how it feels
+
+**Then deploy whichever you prefer.**
+
+---
+
+## Final Recommendation
+
+Deploy **Version 2 (Minimal)** for Saturday's career event and supervisor seeking. It's more aligned with academic/research culture.
+
+If you later decide you want the colorful version for industry networking or job applications, you can switch in 5 minutes.
+
+---
+
+**Questions about either design?** Let me know which resonates with you and I can help customize further!
