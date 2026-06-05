@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Monte Carlo cost-effectiveness simulation for AI-assisted diagnostic triage: ICER, QALYs, Bayesian updating, and sensitivity analysis.">
+    <title>Health-Economic Simulation of AI Triage - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog" id="first-content" style="background-color: #122a40;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Health-Economic Simulation of AI Triage</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A Monte Carlo framework that estimates whether an AI diagnostic-triage tool is worth
+                        funding. It runs synthetic patient cohorts through two care pathways and reports a full
+                        distribution of cost-effectiveness outcomes, not a single number.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/health-economic-simulation" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Monte Carlo · Bayesian updating · ICER / QALYs · Sensitivity analysis · NHS reference costs · MIMIC-IV</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/economic-simulation/ce_plane.png" alt="Cost-effectiveness plane showing simulated incremental cost and QALY outcomes against willingness-to-pay thresholds">
+                <img class="background" src="../assets/projects/economic-simulation/ce_plane.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The question ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The question</h1>
+        <p class="text">
+            Clinical AI is usually judged on accuracy: sensitivity, specificity, AUC. The question a funder
+            actually asks is different. Does the tool save money and improve outcomes across a whole
+            population? This project builds the machinery to answer that, using AI triage in first-seizure
+            clinics as a worked example.
+        </p>
+    </div>
+
+    <!-- ===== The model ===== -->
+    <div class="container blog main">
+        <h1>The model</h1>
+        <p class="text">
+            I simulate 10,000 patient cohorts through two parallel pathways, standard care and AI-assisted
+            triage, and compare them. Costs are drawn from Gamma distributions fitted to NHS reference costs;
+            time-to-diagnosis follows LogNormal distributions grounded in the epilepsy literature; and the
+            shapes of the hospital-pathway parameters come from MIMIC-IV records. To compare the two pathways
+            fairly, each patient is routed through both using common random numbers, which cancels noise and
+            sharpens the contrast.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/economic-simulation/patient_pathways.png" alt="Flow diagram of the standard-care pathway versus the AI-assisted triage pathway">
+        <p class="caption">
+            <b>Figure 1.</b> The two pathways. Each simulated patient runs through both standard care and
+            AI-assisted triage, so the difference in cost and outcome is measured patient by patient.
+        </p>
+    </div>
+
+    <!-- ===== Bayesian updating ===== -->
+    <div class="container blog main">
+        <h1>Bayesian updating</h1>
+        <p class="text">
+            The AI tool does not replace the clinician; it shifts a belief. I model the tool's output as
+            evidence that moves a clinician's prior probability of a diagnosis to a posterior, through Bayes'
+            theorem. A vectorised version runs the same update across the whole cohort at simulation speed.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/economic-simulation/bayesian_belief_updating.png" alt="Prior to posterior belief shift produced by the AI tool's output via Bayes theorem">
+        <p class="caption">
+            <b>Figure 2.</b> Prior to posterior. The AI output updates the clinician's belief, which then
+            changes the downstream pathway the patient takes.
+        </p>
+    </div>
+
+    <!-- ===== Cost-effectiveness ===== -->
+    <div class="container blog main">
+        <h1>Cost-effectiveness</h1>
+        <p class="text">
+            For each run I compute the incremental cost and the incremental quality-adjusted life years
+            (QALYs), and combine them into an incremental cost-effectiveness ratio (ICER). Plotting every run
+            on the cost-effectiveness plane, against the NICE willingness-to-pay thresholds, turns a single
+            verdict into a cloud of outcomes (the cover figure). That cloud is the honest picture: it shows
+            how often the tool is worth funding, not just whether the average run clears the bar.
+        </p>
+    </div>
+
+    <!-- ===== Sensitivity ===== -->
+    <div class="container blog main">
+        <h1>What drives the result</h1>
+        <p class="text">
+            A one-way sensitivity analysis varies each parameter in turn to see which ones move the
+            cost-effectiveness most. The tornado diagram ranks them, which tells a commissioner where the
+            uncertainty actually lives and which numbers are worth measuring better.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/economic-simulation/oneway_sa_tornado.png" alt="Tornado diagram ranking parameters by their influence on cost-effectiveness">
+        <p class="caption">
+            <b>Figure 3.</b> One-way sensitivity analysis. The widest bars are the parameters the result
+            depends on most.
+        </p>
+    </div>
+
+    <!-- ===== Decision under uncertainty ===== -->
+    <div class="container blog main">
+        <h1>Decision under uncertainty</h1>
+        <p class="text">
+            The cost-effectiveness acceptability curve reads the simulation from a decision-maker's seat: at
+            each willingness-to-pay threshold, what is the probability the tool is the cost-effective choice?
+            That probability, rather than a single ICER, is what supports a funding decision.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/economic-simulation/ce_acceptability_curve.png" alt="Cost-effectiveness acceptability curve showing probability of cost-effectiveness across willingness-to-pay thresholds">
+        <p class="caption">
+            <b>Figure 4.</b> The acceptability curve. It maps each willingness-to-pay threshold to the
+            probability that the tool is the cost-effective option.
+        </p>
+    </div>
+
+    <!-- ===== Status ===== -->
+    <div class="container blog main">
+        <h1>Status</h1>
+        <p class="text">
+            The framework and code are complete and validated, with a fixed seed so every run reproduces. The
+            current figures use synthetic placeholder parameters while the real MIMIC-IV extracts are
+            integrated, so the numbers will move but the machinery will not. The full notebook and the data
+            provenance are in the
+            <a href="https://github.com/riyashet-hds/health-economic-simulation" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

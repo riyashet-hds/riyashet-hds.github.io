@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A critical analysis of ancestry bias in GWAS and polygenic risk scores, using the 2024 All of Us controversy, with implications for the Gulf.">
+    <title>Bias in Genomic Data - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <!-- ===== Top navigation ===== -->
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Title hero ===== -->
+    <div class="container blog" id="first-content" style="background-color: #18271d;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Bias in Genomic Data</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A critical look at ancestry bias in genome-wide studies and the risk scores built from
+                        them. Using the 2024 All of Us controversy, I argue that bias enters genomics in two
+                        ways: who gets sampled, and how their data is shown.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/genomic-data-bias" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Read <i class="fa-solid fa-book-open"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Critical analysis · GWAS · Polygenic risk scores · Health equity · Gulf focus</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/genomic-bias/ancestry_donuts.png" alt="Donut charts comparing ancestry composition: prior GWAS aggregate around 86 percent European versus All of Us at 54 percent European">
+                <img class="background" src="../assets/projects/genomic-bias/ancestry_donuts.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The problem ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The problem</h1>
+        <p class="text">
+            Genome-wide association studies link DNA to disease, and we have run them on millions of people.
+            As of 2021, about 86% of those people were of European ancestry. The clinical product, the
+            polygenic risk score, is several-fold less accurate outside that group. Middle Eastern and Gulf
+            populations are barely represented at all.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/genomic-bias/gwas_parti_bar.png" alt="Stacked bar of cumulative GWAS participation by ancestry from 2008 to 2021, dominated by European ancestry at about 86 percent">
+        <p class="caption">
+            <b>Figure 1.</b> Cumulative GWAS participation by ancestry, 2008 to 2021. European ancestry makes
+            up roughly 86%, with most other groups close to the axis.
+        </p>
+    </div>
+
+    <!-- ===== All of Us and the controversy ===== -->
+    <div class="container blog main">
+        <h1>All of Us, and the figure that became the story</h1>
+        <p class="text">
+            In 2024 the All of Us program published a landmark paper. It sequenced 245,000 genomes, about 46%
+            from non-European ancestry, which is a real step toward closing the gap. The cover charts show that
+            shift away from the old 86% European aggregate. Its headline figure was the problem. A UMAP
+            coloured by self-described race made a continuous genetic landscape look like a handful of discrete
+            races. The same paper also published an admixture plot showing the continuous reality, yet the
+            UMAP became the press image, and geneticists pushed back within weeks. Bias entered not only
+            through who was sampled, but through which figure reached the front page.
+        </p>
+    </div>
+
+    <!-- ===== The Gulf ===== -->
+    <div class="container blog main">
+        <h1>Why this matters for the Gulf</h1>
+        <p class="text">
+            Even All of Us, with its 46% non-European cohort, includes almost no Middle Eastern ancestry. A
+            polygenic risk score trained on it will not transfer cleanly to an Emirati patient. That is why
+            the Emirati Genome Programme and the Qatar Genome Programme matter. Regional cohorts are a
+            precondition for safe genomic medicine here, not a redundant copy of the international ones.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/genomic-bias/cohort_size_bar.png" alt="Bar chart of major population genomics programmes by cohort size on a log scale, highlighting the Gulf programmes">
+        <p class="caption">
+            <b>Figure 2.</b> Major population genomics programmes by cohort size. The Gulf programmes are
+            building national reference genomes that international datasets do not cover.
+        </p>
+    </div>
+
+    <!-- ===== Recommendations ===== -->
+    <div class="container blog main">
+        <h1>Recommendations</h1>
+        <p class="text">
+            The talk closes with five recommendations: treat ancestry as a continuum rather than fixed
+            categories, add a bias-and-equity review step for genomic publications, default Gulf clinical
+            tools to local reference data, train clinicians to read risk scores as ancestry-dependent
+            confidence intervals, and pre-register visualisation choices, not just analyses. The slides and the
+            full reference list are in the
+            <a href="https://github.com/riyashet-hds/genomic-data-bias" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

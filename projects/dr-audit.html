@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A safety audit of a diabetic retinopathy classifier using the Medical Algorithmic Audit framework: subgroup testing, adversarial robustness, and FMEA risk scoring.">
+    <title>Diabetic Retinopathy Algorithmic Audit - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <!-- ===== Top navigation ===== -->
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Title hero ===== -->
+    <div class="container blog" id="first-content" style="background-color: #1f2430;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Diabetic Retinopathy Algorithmic Audit</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A safety audit of the diabetic retinopathy classifier from my retinal project. Using
+                        the Medical Algorithmic Audit framework, I look past the headline kappa to find where
+                        the model fails, how badly, and what that would mean for a patient.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/dr-algorithmic-audit" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Responsible AI · Model risk management · Medical Algorithmic Audit · Subgroup testing · FMEA</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/algo-audit/gradcam_error_comparison.png" alt="Grad-CAM heat maps on misclassified retinal images, showing where the model's attention falls when it grades incorrectly">
+                <img class="background" src="../assets/projects/algo-audit/gradcam_error_comparison.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Past the headline number ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>Past the headline number</h1>
+        <p class="text">
+            The model scores a quadratic weighted kappa of 0.88, which reads as strong agreement with expert
+            graders. That number hides the failures that matter. Broken down by severity, sensitivity falls
+            from 95% on healthy retinas to 48.6% on proliferative disease, the grade that needs emergency
+            referral. The audit follows the Medical Algorithmic Audit framework, working through error
+            analysis, subgroup testing, adversarial robustness, and a structured risk score.
+        </p>
+    </div>
+
+    <!-- ===== Where it fails ===== -->
+    <div class="container blog main">
+        <h1>Where it fails, by grade</h1>
+        <p class="text">
+            Performance is strong on no-disease and mild cases and weak on the rare, urgent grades. The model
+            also undergrades more than it overgrades. About 56% of its errors call a case less severe than it
+            is, which in a screening programme means a delayed referral rather than a false alarm.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/algo-audit/subgroup_testing.png" alt="Sensitivity by severity grade, dropping from about 95 percent for No DR to 49 percent for Proliferative">
+        <p class="caption">
+            <b>Figure 1.</b> Sensitivity by severity grade. It drops from 95% on no-disease to 49% on
+            proliferative disease, the grade that most needs to be caught.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/algo-audit/error_analysis.png" alt="Breakdown of misclassifications by direction and severity distance, showing a majority of undergrading errors">
+        <p class="caption">
+            <b>Figure 2.</b> Errors by direction and distance. Most mistakes undergrade by one step, the
+            direction that delays care.
+        </p>
+    </div>
+
+    <!-- ===== Robustness ===== -->
+    <div class="container blog main">
+        <h1>How it breaks under poor images</h1>
+        <p class="text">
+            I simulated the image-quality problems a real clinic sees. Gaussian blur drops kappa from 0.87 to
+            0.69, and heavy JPEG compression drops it to 0.65. Both are realistic for camera defocus, patient
+            movement, or images compressed for telemedicine. Moderate compression is tolerated well.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/algo-audit/adversarial_robustness.png" alt="Kappa degradation curves under brightness, contrast, blur, and JPEG compression perturbations">
+        <p class="caption">
+            <b>Figure 3.</b> Kappa under four image perturbations. Blur and heavy compression cause the
+            largest drops.
+        </p>
+    </div>
+
+    <!-- ===== Risk and recommendations ===== -->
+    <div class="container blog main">
+        <h1>Risk and recommendations</h1>
+        <p class="text">
+            Scoring each failure mode by severity and frequency puts undergraded proliferative disease at the
+            top of the risk list. The audit recommends concrete guardrails: route every severe or
+            proliferative prediction to a human, send low-confidence cases (below 0.6) for review, add an
+            image-quality gate before inference, and validate externally on data that actually records age,
+            sex, and ethnicity, which this dataset does not. Auditing the model taught me more about it than
+            training it did. The full audit, the risk table, and the dataset documentation are in the
+            <a href="https://github.com/riyashet-hds/dr-algorithmic-audit" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

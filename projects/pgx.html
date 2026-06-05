@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A health data science implementation plan for CYP2C19-guided antiplatelet prescribing in the UAE: data fabric, clinical decision support, and governance.">
+    <title>Pharmacogenomics-Guided Medication Safety - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <!-- ===== Top navigation ===== -->
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Title hero ===== -->
+    <div class="container blog" id="first-content" style="background-color: #2a1822;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Pharmacogenomics-Guided Medication Safety in CVD</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        An implementation plan for CYP2C19-guided antiplatelet prescribing in the UAE. It works
+                        out the data, methods, governance, and evaluation a hospital would need to turn a
+                        genotype into a safer prescription after a stent.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/pgx-cvd-medication-safety" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Read <i class="fa-solid fa-book-open"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Health-data architecture · CPIC / PharmCAT · HL7 FHIR Genomics · Governance (PDPL, ADHICS, SaMD)</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/pgx/pathway.jpg" alt="Swimlane diagram of the CYP2C19-guided dual antiplatelet pathway across actors and time">
+                <img class="background" src="../assets/projects/pgx/pathway.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The decision ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The decision</h1>
+        <p class="text">
+            After a heart attack and a stent, a patient needs an antiplatelet drug. The usual choice,
+            clopidogrel, does not activate well in people who are CYP2C19 poor or intermediate metabolisers,
+            who then stay at higher risk of another event. In a UAE pilot, about 47% of cardiovascular
+            patients carried such a phenotype. A single global prescribing rule cannot be assumed for a
+            population this mixed, which is the gap this plan addresses.
+        </p>
+    </div>
+
+    <!-- ===== The pathway (figure-centered) ===== -->
+    <div class="container blog main">
+        <h1>The pathway</h1>
+        <p class="text">
+            The plan centres on that one prescribing decision and traces it across the people and systems
+            involved, from genetic testing through to follow-up.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/pgx/pathway.jpg" alt="The CYP2C19-guided dual antiplatelet pathway: rows are actors, columns are time, data converges at the prescribing decision, and governance gates sit between stages">
+        <p class="caption">
+            <b>Figure 1.</b> The CYP2C19-guided dual antiplatelet pathway under the proposed EGP-C1 pilot.
+            Rows are actors, columns are time, data converges at the prescribing decision, and the governance
+            gates (data protection, security, medical-device approval) sit between stages.
+        </p>
+    </div>
+
+    <!-- ===== Data fabric ===== -->
+    <div class="container blog main">
+        <h1>A six-row data fabric</h1>
+        <p class="text">
+            Sound decision support needs more than a genotype. Six data types converge into one
+            decision-grade record:
+        </p>
+        <ul>
+            <li><b>Genomic.</b> The CYP2C19 genotype, translated to a metaboliser phenotype.</li>
+            <li><b>EHR and health-information-exchange.</b> The channel that carries the recommendation to the prescriber at the point of care.</li>
+            <li><b>Medication and claims.</b> What was actually prescribed and taken, and adherence over the year.</li>
+            <li><b>Laboratory.</b> Renal and bleeding-risk modifiers that refine the drug choice beyond the gene.</li>
+            <li><b>Patient-reported outcomes.</b> Bleeding events, quality of life, and confidence in the medication.</li>
+            <li><b>Demographic and ancestry.</b> Context for fair phenotype interpretation in an under-represented population.</li>
+        </ul>
+    </div>
+
+    <!-- ===== Methods ===== -->
+    <div class="container blog main">
+        <h1>Methods</h1>
+        <p class="text">
+            Four health data science methods turn the fabric into a working tool. CPIC star-allele
+            translation with PharmCAT calls the phenotype. Rules-based decision support delivers the
+            recommendation at e-prescribing through HL7 FHIR Genomics and CDS Hooks. Risk-adjusted outcome
+            modelling checks whether the pathway actually changes outcomes. Arabic clinical natural language
+            processing reads bleeding and adherence signals out of free-text notes.
+        </p>
+    </div>
+
+    <!-- ===== Governance ===== -->
+    <div class="container blog main">
+        <h1>Governance</h1>
+        <p class="text">
+            None of this runs without governance, which is often where clinical-AI plans quietly fail. The
+            plan maps the UAE data-protection law, the ADHICS security standard, and the
+            Software-as-a-Medical-Device pathway that a prescribing tool would have to clear before it could
+            touch a patient.
+        </p>
+    </div>
+
+    <!-- ===== Recommendation ===== -->
+    <div class="container blog main">
+        <h1>The recommendation</h1>
+        <p class="text">
+            The recommended next step is EGP-C1, a twelve-month feasibility pilot rather than an outcomes
+            trial. It would run in two Abu Dhabi centres with 500 to 1,000 patients, measured against five
+            KPIs covering process, prescribing concordance, safety, patient experience, and an exploratory
+            clinical outcome. The full plan, the data-fabric table, and the references are in the
+            <a href="https://github.com/riyashet-hds/pgx-cvd-medication-safety" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# CV is a local-preview placeholder only and must NOT be published yet.
+# The old version stays out of git. When the final CV is ready, replace
+# assets/files/riya-shet-cv.pdf and delete the line below to publish it.
+assets/files/*.pdf
+
+# Unused legacy stylesheet from the old hand-coded site
+styles.css
+
+# Project source notebooks and READMEs live in each project's own repo, not the
+# published site. Keep them locally for reference, but never push them.
+assets/projects/**/*.ipynb
+assets/projects/**/README.md

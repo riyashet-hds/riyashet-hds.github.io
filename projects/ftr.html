@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A machine-learning model that flags patient-level financial risk in a hospital revenue cycle, using synthetic EHR data.">
+    <title>Healthcare Revenue Cycle Risk Prediction - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog" id="first-content" style="background-color: #2a2030;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Healthcare Revenue Cycle Risk Prediction</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A model that flags which patients are at financial risk in a hospital's revenue cycle,
+                        so a billing team can offer support early rather than chase an unpaid bill later. Built
+                        and validated on synthetic EHR data.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/healthcare-ftr-prediction" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>scikit-learn · Random Forest · Imbalanced learning · Permutation importance · Synthetic EHR (Synthea)</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/ftr/prc_roc.png" alt="Precision-recall and ROC curves for the financial-risk classifier">
+                <img class="background" src="../assets/projects/ftr/prc_roc.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The problem ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The problem</h1>
+        <p class="text">
+            Hospitals carry a lot of unpaid patient bills. If you can flag which patients are likely to end up
+            in financial difficulty, a billing team can step in early with a payment plan or support, instead
+            of chasing a debt months later. This is a ranking problem: surface the high-risk group at the top.
+            I built it on synthetic EHR data from Synthea, so it is a working demonstration of the pipeline
+            rather than a deployed tool.
+        </p>
+    </div>
+
+    <!-- ===== The model ===== -->
+    <div class="container blog main">
+        <h1>The model</h1>
+        <p class="text">
+            The classifier is a Random Forest, trained with class weighting because the high-risk group is
+            rare, and evaluated with stratified cross-validation so the rare class is represented in every
+            fold. The cover shows the precision-recall and ROC curves, which matter more than raw accuracy
+            when the positive class is small.
+        </p>
+    </div>
+
+    <!-- ===== What predicts risk ===== -->
+    <div class="container blog main">
+        <h1>What predicts risk</h1>
+        <p class="text">
+            Reading the model with both impurity-based and permutation importance, comorbidity burden came
+            out as the most reliable driver, ahead of features that are often assumed to matter. The useful
+            takeaway is that routine clinical data already carries most of the signal, so a scoring tool can
+            run on data a hospital already holds.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/ftr/mdi_pi.png" alt="Feature importance from impurity-based and permutation methods, with comorbidity burden ranked highest">
+        <p class="caption">
+            <b>Figure 1.</b> Feature importance by impurity and by permutation. Comorbidity burden leads on
+            both, which is the more trustworthy signal.
+        </p>
+    </div>
+
+    <!-- ===== Performance ===== -->
+    <div class="container blog main">
+        <h1>Performance</h1>
+        <p class="text">
+            Ranked by predicted risk, the model identifies the high-risk group far better than the baseline,
+            a roughly 9.4-fold lift at the top of the ranking. The confusion matrix shows where it still
+            confuses the two groups, which is the cost a billing team would weigh against the saving.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/ftr/cm.png" alt="Confusion matrix for the financial-risk classifier">
+        <p class="caption">
+            <b>Figure 2.</b> Confusion matrix. It makes the trade-off explicit: how many genuinely at-risk
+            patients are caught against how many are flagged unnecessarily.
+        </p>
+    </div>
+
+    <!-- ===== Closing ===== -->
+    <div class="container blog main">
+        <h1>Notes</h1>
+        <p class="text">
+            The data are synthetic, so this is a demonstration of the modelling and evaluation rather than a
+            validated clinical or financial tool. The full pipeline, from data generation to feature
+            importance, is in the
+            <a href="https://github.com/riyashet-hds/healthcare-ftr-prediction" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+/* ===========================================================================
+   custom.css — site shell on top of Clarity's main_free.css
+   Matches shikun.io as closely as free fonts allow:
+   - Hanken Grotesk substitutes the commercial "Athletics"
+   - nav: 2fr / 1fr grid, links spread space-between, social pushed right,
+     animated .menu-dot (see assets/scripts/site.js)
+   - home: two-column intro + portrait
+   =========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap");
+
+/* ---- Font override: replace Clarity's Poppins with Hanken Grotesk ---- */
+h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, .menu a, .title, .btn, .button {
+  font-family: "Hanken Grotesk", sans-serif;
+}
+
+:root {
+  --ink: #353535;
+  --muted: #6f6f6f;
+  --accent: #2f7d5d;
+  --btn-bg: #ededed;
+  --rule: #e6e6e6;
+  --navy: #0e1b2a;
+}
+
+/* ===================== Top navigation (matches Shikun) ===================== */
+.nav-bar { width: 100%; }
+.nav-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 25vw;
+  padding: 1.6em 0;
+  position: relative;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.menu a {
+  position: relative;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+  padding-bottom: 0.5em;
+}
+.menu a:hover { color: var(--ink); }
+.menu .menu-dot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  transition: left 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.social .icon a {
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+  text-align: center;
+  font-size: 20px;
+}
+.social .icon a:hover { color: var(--accent); }
+
+/* ===================== Buttons ===================== */
+.button, .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  width: fit-content;
+  background: var(--btn-bg);
+  color: var(--ink);
+  padding: 0.75em 1.2em;
+  border-radius: 8px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.button:hover, .btn:hover { background: #e2e2e2; }
+.button i, .btn i { font-size: 0.95em; }
+
+/* ===================== Home hero (matches Shikun) ===================== */
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 8vw;
+  padding: 8vh 0;
+}
+.home-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-intro .title {
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 54px);
+  color: var(--ink);
+  margin-bottom: 0.6em;
+}
+.home-intro p { padding: 0.9em 0; font-size: 18px; }
+.home-intro em { font-style: italic; color: var(--muted); }
+.home-intro .button { margin-top: 1.2em; }
+.home-profile img,
+.home-profile .photo-placeholder {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+}
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #cfe3d8 0%, #d9e2ee 100%);
+}
+
+@media screen and (min-width: 769px) {
+  .home-container {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10vw;
+    padding: 12vh 0;
+    align-items: center;
+  }
+}
+
+/* ===================== Page heading (About / Projects) ===================== */
+.page-head { padding: 4vh 0 1vh; }
+.page-head .title { font-size: clamp(32px, 4vw, 44px); font-weight: 600; color: var(--ink); }
+.lead { font-size: 18px; color: var(--muted); max-width: 70ch; }
+
+/* ===================== About: 01 / 02 sectioned layout ===================== */
+.about-row {
+  display: flex;
+  gap: 6vw;
+  padding: 34px 0;
+  border-top: 1px solid var(--rule);
+}
+.about-row .label {
+  flex: 0 0 160px;
+  font-family: "Charter", serif;   /* contrast against the Hanken Grotesk body */
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding-top: 5px;
+}
+.about-row .body { flex: 1; max-width: 75ch; }
+.about-row .body p { margin-bottom: 16px; }
+.about-row .body h3 { font-weight: 600; color: var(--ink); margin-top: 6px; }
+.about-row .body ul { padding-left: 0; list-style: none; }
+.about-row .body ul li { margin-bottom: 16px; }
+
+/* ===================== Projects gallery ===================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 24px 0 8vh;
+}
+.card { display: block; color: var(--ink); text-decoration: none; }
+.card .cover {
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover .cover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10); }
+.card .ptitle { font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+.card .ptype { font-size: 14px; color: var(--muted); }
+
+.tile-1 { background: linear-gradient(140deg, #cfe3d8, #aac9bd); }
+.tile-2 { background: linear-gradient(140deg, #d6e2f0, #b8cbe6); }
+.tile-3 { background: linear-gradient(140deg, #efe2d2, #e6cdb6); }
+.tile-4 { background: linear-gradient(140deg, #e6dcef, #cdbfe2); }
+.tile-5 { background: linear-gradient(140deg, #d3e8e6, #b4d6d2); }
+.tile-6 { background: linear-gradient(140deg, #ead7da, #d9b9c0); }
+
+/* ----- Grouped hierarchy: featured Selected row + compact secondary rows ----- */
+.gallery-group .gallery { padding: 0 0 6px; }
+.gallery-group:last-of-type { padding-bottom: 6vh; }
+
+.group-label {
+  font-family: "Charter", serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.gallery-group:first-of-type .group-label { border-top: none; padding-top: 6px; }
+
+/* Featured (Selected): large portrait covers, prominent titles */
+.gallery.featured .cover { aspect-ratio: 4 / 5; }
+.gallery.featured .ptitle { font-size: 21px; }
+
+/* Compact (More / Writing): shorter covers, smaller type, clearly secondary */
+.gallery.compact .cover { aspect-ratio: 3 / 2; margin-bottom: 12px; }
+.gallery.compact .ptitle { font-size: 16px; }
+.gallery.compact .ptype { font-size: 13px; }
+
+/* ===================== Project hero: nav overlays colored hero, consistent big size ===================== */
+.nav-bar.on-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: transparent;
+}
+.nav-bar.on-hero .menu a,
+.nav-bar.on-hero .social .icon a { color: #f4f3ef; }
+.nav-bar.on-hero .menu a:hover,
+.nav-bar.on-hero .social .icon a:hover { color: #ffffff; }
+
+.container.blog#first-content {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding-top: 92px;          /* clears the absolute nav */
+  box-sizing: border-box;
+}
+.container.blog#first-content .blog-title { width: 100%; }
+
+@media screen and (max-width: 768px) {
+  .nav-bar.on-hero { position: static; }
+  .nav-bar.on-hero .menu a,
+  .nav-bar.on-hero .social .icon a { color: var(--ink); }
+  .container.blog#first-content { min-height: auto; padding-top: 0; display: block; }
+}
+
+/* ===================== Project-page results table ===================== */
+.container.blog table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0 0.4em;
+  font-size: 16px;
+}
+.container.blog th,
+.container.blog td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.container.blog thead th { font-weight: 600; }
+.container.blog td.num, .container.blog th.num { text-align: right; white-space: nowrap; }
+
+/* side-by-side figures within a figure block (equal halves, no overflow) */
+.fig-row { display: flex; gap: 20px; align-items: flex-start; justify-content: center; }
+.fig-row img { flex: 1 1 0; min-width: 0; width: 100%; }
+@media screen and (max-width: 768px) { .fig-row { flex-direction: column; } }
+
+/* ===================== Footer ===================== */
+footer { background: #fafafa; }
+footer .container { padding-top: 30px; padding-bottom: 30px; }
+footer p { font-size: 14px; color: var(--muted); }
+
+/* ===================== Responsive ===================== */
+@media screen and (max-width: 768px) {
+  .nav-container { grid-template-columns: 1fr; column-gap: 0; row-gap: 14px; }
+  .menu a { font-size: 18px; }
+  .social { justify-content: flex-start; gap: 22px; }
+  .gallery { grid-template-columns: 1fr; }
+  .about-row { flex-direction: column; gap: 14px; }
+  .about-row .label { flex-basis: auto; }
+}

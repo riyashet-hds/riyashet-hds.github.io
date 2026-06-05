@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transfer learning for diabetic retinopathy grading: comparing a from-scratch CNN, ResNet-50, and ViT-B/16, with Grad-CAM explainability.">
+    <title>Retinal Fundus Classification - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <!-- ===== Top navigation ===== -->
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Title hero ===== -->
+    <div class="container blog" id="first-content" style="background-color: #1b1f3a;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Retinal Fundus Classification</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        Transfer learning for grading diabetic retinopathy from retinal photographs. I compare
+                        a from-scratch CNN against a fine-tuned ResNet-50 and ViT-B/16, then use Grad-CAM to
+                        see where each model looks.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/retinal-fundus-classification" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>PyTorch · ResNet-50 · ViT-B/16 · Grad-CAM · APTOS 2019, 3,662 images</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/retinal-fundus/gradcam_comp.png" alt="Grad-CAM heat maps comparing where the CNN and Vision Transformer focus on retinal images">
+                <img class="background" src="../assets/projects/retinal-fundus/gradcam_comp.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The task ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The task</h1>
+        <p class="text">
+            Diabetic retinopathy is graded from a retinal photograph on a five-point scale, from no disease
+            through to proliferative disease. I used the APTOS 2019 dataset, 3,662 labelled fundus images
+            across those five grades. The grading is hard at the top end: severe and proliferative cases are
+            rare and look close to their neighbours, so a model has little data and little visual margin to
+            learn them.
+        </p>
+    </div>
+
+    <!-- ===== Three approaches + results ===== -->
+    <div class="container blog main">
+        <h1>Three approaches</h1>
+        <p class="text">
+            I trained three models: a three-layer CNN from scratch, and two ImageNet-pretrained models
+            fine-tuned on the fundus images, ResNet-50 and ViT-B/16. Fine-tuning a pretrained model nearly
+            doubled the kappa of the from-scratch baseline.
+        </p>
+        <table>
+            <thead>
+                <tr><th>Model</th><th>Approach</th><th class="num">Kappa (QWK)</th><th class="num">Accuracy</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Baseline CNN</td><td>trained from scratch</td><td class="num">0.470</td><td class="num">58.6%</td></tr>
+                <tr><td>ResNet-50</td><td>pretrained, fine-tuned</td><td class="num">0.888</td><td class="num">78.6%</td></tr>
+                <tr><td>ViT-B/16</td><td>pretrained, fine-tuned</td><td class="num">0.884</td><td class="num">81.4%</td></tr>
+            </tbody>
+        </table>
+        <p class="text">
+            ResNet-50 reached the highest kappa and ViT-B/16 the highest accuracy. Both pretrained models
+            cleared the 0.85 quadratic-weighted-kappa mark used for strong agreement with expert grades.
+        </p>
+    </div>
+
+    <!-- ===== Grad-CAM: what the models look at ===== -->
+    <div class="container blog main">
+        <h1>What the models look at</h1>
+        <p class="text">
+            Accuracy alone does not say whether a model is reading the retina or a shortcut. I used Grad-CAM
+            to map where each model puts its attention. ResNet-50 tends to fire on a single concentrated
+            region, while the Vision Transformer spreads attention across several anatomical landmarks. The
+            difference in attention helps explain why the two models, despite similar scores, make different
+            mistakes.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/retinal-fundus/gradcam_comp.png" alt="Side-by-side Grad-CAM heat maps for the baseline CNN, ResNet-50, and ViT across retinal fundus images">
+        <p class="caption">
+            <b>Figure 1.</b> Grad-CAM heat maps across the three models. Warm regions mark where each model
+            relies most. ResNet-50 concentrates on one area; ViT distributes attention across the retina.
+        </p>
+    </div>
+
+    <!-- ===== Where they differ ===== -->
+    <div class="container blog main">
+        <h1>Where they differ</h1>
+        <p class="text">
+            The two transfer models make different errors. The confusion matrices show that most mistakes sit
+            between adjacent grades, and that severe and proliferative disease stay the weak point, with F1
+            scores around 0.44 to 0.55. Those are the rare, high-stakes classes a clinical tool would most
+            need to get right.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <div class="fig-row">
+            <img src="../assets/projects/retinal-fundus/resnet50_cm.png" alt="Confusion matrix for the ResNet-50 model across the five diabetic retinopathy grades">
+            <img src="../assets/projects/retinal-fundus/vit_cm.png" alt="Confusion matrix for the ViT-B/16 model across the five diabetic retinopathy grades">
+        </div>
+        <p class="caption">
+            <b>Figure 2.</b> Confusion matrices for ResNet-50 (left) and ViT-B/16 (right). Errors cluster on
+            the diagonal's neighbours, and the rare severe and proliferative grades are the hardest to call.
+        </p>
+    </div>
+
+    <!-- ===== Training ===== -->
+    <div class="container blog main">
+        <h1>Training</h1>
+        <p class="text">
+            Training used Ben Graham preprocessing, mixed-precision on a T4 GPU, and an inverse-frequency
+            weighted loss to handle the class imbalance. The Vision Transformer converged quickly, peaking
+            near epoch 8 and early-stopping at epoch 13 as it began to overfit.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/retinal-fundus/validation_lot_kappa.png" alt="Validation quadratic weighted kappa across training epochs for the three models">
+        <p class="caption">
+            <b>Figure 3.</b> Validation kappa across epochs. The pretrained models climb fast and plateau
+            well above the from-scratch baseline.
+        </p>
+    </div>
+
+    <!-- ===== Limitation ===== -->
+    <div class="container blog main">
+        <h1>Limitations</h1>
+        <p class="text">
+            These results come from one competition dataset. Severe and proliferative disease remain the weak
+            classes, and a deployable tool would need external validation across cameras, sites, and patient
+            populations before it could grade in the clinic. The full pipeline, from preprocessing to
+            Grad-CAM, is in the
+            <a href="https://github.com/riyashet-hds/retinal-fundus-classification" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multimodal integration for colorectal cancer: a reproducible multi-omics pipeline comparing prediction and biomarker discovery.">
+    <title>Multimodal Integration for Colorectal Cancer - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <!-- ===== Top navigation ===== -->
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Title hero (own cover, fuzzy-hue glow) ===== -->
+    <div class="container blog" id="first-content" style="background-color: #102a33;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Multimodal Integration for Colorectal Cancer</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A reproducible multi-omics pipeline that fuses blood metabolomics, clinical
+                        biochemistry, and diet to classify colorectal cancer. It compares two integration
+                        strategies and separates what fusion adds for prediction from what it adds for biology.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/crc-multimodal-integration" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>Python · R (mixOmics) · SHAP · UK Biobank, n = 4,596</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/crc/diablo_circos.png" alt="Circos plot of cross-block correlations between metabolomics and biochemistry features">
+                <img class="background" src="../assets/projects/crc/diablo_circos.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== The question ===== -->
+    <div class="container blog main first" id="blog-main">
+        <h1>The question</h1>
+        <p class="text">
+            A cancer cohort carries several kinds of data per patient. Two questions follow from that. Does
+            combining them classify colorectal cancer better than the best single source? And does combining
+            them reveal biology that no single source shows on its own? I built one pipeline to answer both,
+            and the answers pull in different directions.
+        </p>
+    </div>
+
+    <!-- ===== Results ===== -->
+    <div class="container blog main">
+        <h1>Results</h1>
+        <p class="text">
+            Clinical biochemistry alone already does most of the work. Fusing the modalities adds a real but
+            small amount on top, which is the honest headline of this project.
+        </p>
+        <table>
+            <thead>
+                <tr><th>Model</th><th>Strategy</th><th class="num">AUC</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Random Forest, biochemistry alone</td><td>per-modality</td><td class="num">0.824</td></tr>
+                <tr><td>Random Forest, metabolomics alone</td><td>per-modality</td><td class="num">0.565</td></tr>
+                <tr><td>Stacked logistic regression</td><td>late fusion</td><td class="num">0.827</td></tr>
+                <tr><td>rCCA, component 1 (shared structure)</td><td>intermediate</td><td class="num">ρ = 0.884</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/crc/stacked_roc.png" alt="ROC curve for the stacked late-fusion classifier with area under the curve near 0.83">
+        <p class="caption">
+            <b>Figure 1.</b> ROC for the stacked late-fusion classifier (AUC ≈ 0.83), evaluated with 5-fold
+            cross-validation repeated three times. Late fusion adds roughly +0.004 AUC over biochemistry
+            alone.
+        </p>
+    </div>
+
+    <!-- ===== What the model uses ===== -->
+    <div class="container blog main">
+        <h1>What the model uses</h1>
+        <p class="text">
+            I used SHAP and a small surrogate tree to see what drives the decision. Both point to the same
+            place: the biochemistry block, led by HDL, Apolipoprotein A-I, and albumin. The metabolomics block
+            refines the call rather than leading it, which is worth knowing before anyone trusts the output.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/crc/shap_beeswarm_biochem.png" alt="SHAP beeswarm plot for the biochemistry random forest, ranking features by impact on the prediction">
+        <p class="caption">
+            <b>Figure 2.</b> SHAP values for the biochemistry model. Lipoprotein-A, direct bilirubin, and
+            HDL-cholesterol carry the most weight in the per-patient decisions.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/crc/surrogate_tree.png" alt="Depth-4 surrogate decision tree approximating the stacked classifier, splitting almost entirely on the biochemistry probability">
+        <p class="caption">
+            <b>Figure 3.</b> A depth-4 surrogate tree approximating the stacked classifier. Almost every split
+            is on the biochemistry probability, which makes the biochemistry-led behaviour explicit.
+        </p>
+    </div>
+
+    <!-- ===== Shared biology ===== -->
+    <div class="container blog main">
+        <h1>Shared biology</h1>
+        <p class="text">
+            The unsupervised side of the pipeline (DIABLO and regularised CCA) and a cross-modality
+            correlation network all recover one axis. HDL and Apolipoprotein A-I in the clinical block link to
+            HDL particle subfractions in the metabolite block. That shared structure, rather than the
+            prediction score, is what integration actually buys here.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/crc/network_cross_modality.png" alt="Cross-modality correlation network linking biochemistry HDL features to metabolomics HDL particle subfractions">
+        <p class="caption">
+            <b>Figure 4.</b> Cross-modality network at significant Spearman correlations. The dominant bridge
+            runs along the HDL and Apolipoprotein A-I axis shared by both data blocks.
+        </p>
+    </div>
+
+    <!-- ===== Honest limitation ===== -->
+    <div class="container blog main">
+        <h1>An honest limitation</h1>
+        <p class="text">
+            Fusion adds about +0.004 AUC over biochemistry alone, which is small. The value of integration
+            here is biomarker discovery, the shared HDL and ApoA-I axis, not a better prediction. The data
+            are cross-sectional, so this is association rather than a screening test. The full pipeline, the
+            hyperparameter grid, and the verified clinical markers (every PMID checked on PubMed) are in the
+            <a href="https://github.com/riyashet-hds/crc-multimodal-integration" target="_blank">repository</a>.
+        </p>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>
