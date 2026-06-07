@@ -1,7 +1,3 @@
-# CV is a local-preview placeholder only and must NOT be published yet.
-# The old version stays out of git. When the final CV is ready, replace
-# assets/files/riya-shet-cv.pdf and delete the line below to publish it.
-assets/files/*.pdf
 
 # Unused legacy stylesheet from the old hand-coded site
 styles.css
