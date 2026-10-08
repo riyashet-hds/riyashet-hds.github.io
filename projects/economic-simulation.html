@@ -44,14 +44,14 @@
                     </p>
                     <div class="info">
                         <div>
-                            <a href="https://github.com/riyashet-hds/health-economic-simulation" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                            <a href="https://github.com/riyashet-hds/health-economic-simulation-ai-triage" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
                                 Code <i class="fa-solid fa-code"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="info">
-                    <p>Monte Carlo · Bayesian updating · ICER / QALYs · Sensitivity analysis · NHS reference costs · MIMIC-IV</p>
+                    <p>SQL (BigQuery) · MIMIC-IV · Monte Carlo · Bayesian updating · ICER / QALYs · Sensitivity analysis · NHS reference costs</p>
                 </div>
             </div>
             <div class="blog-cover">
@@ -159,15 +159,16 @@
         </p>
     </div>
 
-    <!-- ===== Status ===== -->
+    <!-- ===== Result ===== -->
     <div class="container blog main">
-        <h1>Status</h1>
+        <h1>Result</h1>
         <p class="text">
-            The framework and code are complete and validated, with a fixed seed so every run reproduces. The
-            current figures use synthetic placeholder parameters while the real MIMIC-IV extracts are
-            integrated, so the numbers will move but the machinery will not. The full notebook and the data
-            provenance are in the
-            <a href="https://github.com/riyashet-hds/health-economic-simulation" target="_blank">repository</a>.
+            I extracted a cohort of 10,050 seizure admissions from MIMIC-IV myself, writing SQL in Google
+            BigQuery across five hospital and emergency-department tables. Across 10,000 Monte Carlo runs, the
+            AI pathway saved about £237 per patient and gained 0.15 QALYs. It was cheaper and more effective in
+            every run, so the recommendation was to fund it. The extraction queries are committed to the
+            <a href="https://github.com/riyashet-hds/health-economic-simulation-ai-triage" target="_blank">repository</a>,
+            with a fixed seed so every run reproduces.
         </p>
     </div>
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="First-author paper, BraTS-GoAT workshop at MICCAI 2026: deep-ensemble uncertainty versus single-model confidence for brain tumour segmentation under acquisition shift.">
+    <title>When Should a Model Be Trusted? Reliability Under Distribution Shift - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog" id="first-content" style="background-color: #0f2238;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">When Should a Model Be Trusted? Reliability Under Distribution Shift</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        My MSc dissertation, accepted as a first-author paper at the BraTS-GoAT workshop, MICCAI 2026 (Springer LNCS 17254). It asks whether a segmentation model can tell when it is wrong once the scans change, and compares two warning signals.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://papers.miccai.org/miccai-2026-sat/BraTS_GoAT_015.html" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Paper <i class="fa-solid fa-file-lines"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://github.com/riyashet-hds/brats-goat-reliability" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://arxiv.org/abs/2608.13223" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Preprint <i class="fa-solid fa-book-open"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>nnU-Net · Deep ensembles · Uncertainty · Distribution shift · Linux HPC (SLURM) · Docker</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog main first" id="blog-main">
+        <h1>The question</h1>
+        <p class="text">
+            A model that scores well on its test set will eventually meet unfamiliar data. Think of a new scanner, a new protocol or a new hospital. The dangerous case is when accuracy drops but the model stays confident, because nobody is warned. I tested whether that happens in brain tumour segmentation, and which signal catches it.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>What I built</h1>
+        <p class="text">
+            I trained a five-fold cross-validated nnU-Net and a three-seed deep ensemble on the BraTS-GoAT data, using the University of Birmingham's Linux HPC cluster. I then applied graded synthetic corruptions that mimic acquisition shift, from mild to severe, and measured accuracy, calibration and error detection at each level.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>What I found</h1>
+        <p class="text">
+            Under shift, the single model's confidence stayed almost flat while its accuracy and calibration fell. Disagreement between the ensemble members rose by roughly 25 to 33% above the clean condition, several times the single model's response. So ensemble disagreement detected the shift that the model's own confidence missed. The main failure mode was small satellite lesions on unseen cohorts, and per-voxel error localisation weakened as corruption grew.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Engineering</h1>
+        <p class="text">
+            The pipeline is reproducible end to end, with SLURM jobs from data conversion to plots. I packaged the model as a Docker image for the challenge's external evaluation queue. It scored a whole-tumour Dice of 0.87 on the official validation leaderboard.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Why it matters beyond medicine</h1>
+        <p class="text">
+            Every deployed model meets new data eventually: a new customer base, a new market, a new fraud pattern. The paper's contribution is an honest comparison rather than a claim that one method always wins. The habit it reflects, checking whether a model knows when it is wrong, is the one I bring to any domain.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A clinical decision-support MVP built and deployed in 48 hours at the Harvard HSIL Hackathon 2026: LLM-based risk flags for post-discharge follow-up gaps.">
+    <title>TracHeal: Post-Discharge Care-Continuity Tool - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog" id="first-content" style="background-color: #13302a;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">TracHeal: Post-Discharge Care-Continuity Tool</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        A clinical decision-support MVP my team built and deployed in 48 hours at the Harvard HSIL Hackathon (Dubai hub, April 2026). It reads hospital discharge notes and flags the follow-up gaps that put patients at risk after they go home.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/trachealhackathon" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://trachealhackathon.vercel.app/demo" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Demo <i class="fa-solid fa-display"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>LLM application · Structured outputs · Fallback chain · Flask · CI smoke tests · Vercel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog main first" id="blog-main">
+        <h1>The problem</h1>
+        <p class="text">
+            Many readmissions start with a missed follow-up: an appointment never booked, a medication not reconciled, a warning sign nobody explained. Care coordinators cannot read every discharge note closely, so the risk is easy to miss.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>What it does</h1>
+        <p class="text">
+            TracHeal takes a discharge note as text or PDF and returns a structured risk assessment. It includes a risk score and level, barriers and recommended interventions. It also lists symptom checks, escalation triggers, the drivers behind the risk and its sources. A clinician reviews every output.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>My role</h1>
+        <p class="text">
+            I led the four-person team. I designed the output schema and the risk framework, integrated my teammates' components into one product, and handled deployment. Om built the retrieval prototype, Wenhui Yang the PDF pipeline, and Xu Liu the risk-driver analysis. I also drafted the pilot plan, business model and stakeholder map.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>How it is built</h1>
+        <p class="text">
+            A Flask backend runs as a serverless function behind a static frontend on Vercel. LLM calls go through a fallback chain: Google Gemini first, then DeepSeek, then a deterministic backup, so the demo never breaks if an API fails. The interface shows which mode is running, and a smoke-test suite runs in CI.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Honest limits</h1>
+        <p class="text">
+            It is a 48-hour MVP. The demo uses synthetic patient data and external LLM APIs. A real pilot would need models hosted inside the institution, authentication and a compliance review. Retrieval is simple keyword matching, and the risk scores have not been clinically validated.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>
