@@ -41,22 +41,14 @@
             <div class="body">
                 <p>
                     I'm Riya Shet, a data scientist based in Dubai. I recently finished an MSc in Health
-                    Data Science at the University of Birmingham Dubai.
+                    Data Science at the University of Birmingham Dubai, after a First Class BSc in
+                    psychology, where I was trained in experimental design and statistics.
                 </p>
                 <p>
-                    My dissertation, supervised by Dr Le Zhang, became my first paper. It was accepted at
-                    the BraTS-GoAT workshop at MICCAI 2026. I trained deep-learning models to segment brain
-                    tumours on MRI, then simulated the scanner and protocol changes real hospitals
-                    introduce. Accuracy fell while the model's own confidence barely moved. Disagreement
-                    between several models caught the shift that a single model's confidence missed.
-                    <a href="https://papers.miccai.org/miccai-2026-sat/BraTS_GoAT_015.html" target="_blank">Read the paper</a>.
-                </p>
-                <p>
-                    Previously, I was a research associate at a psychiatry clinic, where I helped optimise
-                    the clinic's operations and patient experience through systems design. That work taught
-                    me that even strong ideas need the right infrastructure and institutional readiness before
-                    they can become part of care. I now bring that lesson into health data science, where my
-                    work combines clinical context, statistical modelling, and machine-learning practice.
+                    Before the MSc, I was a research associate at a psychiatry clinic. I built a KPI-based
+                    investment case that turned clinic operations into service-efficiency targets for a new
+                    pilot. That work taught me that a strong idea needs the right systems around it before
+                    anyone can rely on it.
                 </p>
             </div>
         </div>
@@ -65,23 +57,67 @@
             <div class="label">02 / Research</div>
             <div class="body">
                 <p>
-                    I care about deployment. The projects I want to work on are the ones that make it out of
-                    a notebook and into responsible use. For a model to be ready for healthcare, strong
-                    test numbers are not enough: its risks need to be understood, its potential harms
-                    minimised, and its path to use supported by clinician trust, board sign-off, and
-                    regulatory clearance.
+                    My dissertation, supervised by Dr Le Zhang, became my first paper. It was accepted at the
+                    BraTS-GoAT workshop at MICCAI 2026.
                 </p>
                 <p>
-                    I also lean towards ambitious problems. Compute and tooling are improving quickly, and
-                    work that looked out of reach a few years ago is becoming tractable now. I think
-                    healthcare AI should be willing to aim at difficult problems, as long as that ambition is
-                    matched by careful evaluation, clinical grounding, and respect for the risks involved.
-                    That is why I keep returning to projects across image analysis, data governance,
-                    multi-omics, and oncology.
+                    I trained deep-learning models to segment brain tumours on MRI, then simulated the
+                    scanner and protocol changes real hospitals introduce. Accuracy fell while the model's
+                    own confidence barely moved. Disagreement between several models caught the shift that
+                    a single model's confidence missed.
+                </p>
+                <p>
+                    The full pipeline is public and reproducible, and I packaged the model in Docker for the
+                    challenge's external evaluation (whole-tumour Dice 0.87 on the official validation
+                    leaderboard).
+                    <a href="https://papers.miccai.org/miccai-2026-sat/BraTS_GoAT_015.html" target="_blank">Paper</a> ·
+                    <a href="https://github.com/riyashet-hds/brats-goat-reliability" target="_blank">Code</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="about-row">
+            <div class="label">03 / How I Work</div>
+            <div class="body">
+                <p>
+                    I design experiments to catch my own mistakes before anyone else does.
+                </p>
+                <ul>
+                    <li>
+                        <strong>I test models under the conditions they will meet.</strong> In my retinopathy
+                        audit, a strong headline score (kappa 0.88) hid only 48.6% sensitivity on the most
+                        urgent grade.
+                    </li>
+                    <li>
+                        <strong>I report results that don't flatter me.</strong> In a colorectal cancer study,
+                        two extra data sources added just 0.003 AUC, so I reported no meaningful gain.
+                    </li>
+                    <li>
+                        <strong>I make work reproducible.</strong> Fixed seeds, repeated cross-validation,
+                        committed SQL queries and containerised models.
+                    </li>
+                    <li>
+                        <strong>I tie models to decisions.</strong> I simulated 10,000 scenarios to test
+                        whether a hospital should fund an AI triage tool.
+                    </li>
+                </ul>
+                <p>
+                    Every project links to its code, so you can dig into how it was built.
                 </p>
                 <div style="margin-top: 20px;">
                     <a href="projects.html" class="button icon">See the projects <i class="fa-solid fa-arrow-right-long"></i></a>
                 </div>
+            </div>
+        </div>
+
+        <div class="about-row">
+            <div class="label">04 / Looking For</div>
+            <div class="body">
+                <p>
+                    Data science and AI roles where results have to be trusted, in healthcare, insurance,
+                    finance or government. I'm based in Dubai and happy to talk.
+                    <a href="mailto:riyashet.psy@gmail.com">riyashet.psy@gmail.com</a>
+                </p>
             </div>
         </div>
     </div>
