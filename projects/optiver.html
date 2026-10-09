@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nasdaq closing auction (Optiver Kaggle data): LightGBM baseline, error analysis, SHAP and conformal prediction ranges, with a Power BI report.">
+    <title>Closing-Auction Price Prediction with Calibrated Uncertainty - Riya Shet</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../clarity/clarity.css" />
+    <link href="../assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/custom.css" />
+</head>
+
+<body>
+    <div class="nav-bar on-hero">
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a class="active" href="../projects.html">Projects</a>
+                    <a href="../resume.html">Résumé</a>
+                    <div class="menu-dot"></div>
+                </div>
+                <div class="social">
+                    <div class="icon"><a class="fa-brands fa-github" href="https://github.com/riyashet-hds" target="_blank" aria-label="GitHub"></a></div>
+                    <div class="icon"><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com/in/riyashet" target="_blank" aria-label="LinkedIn"></a></div>
+                    <div class="icon"><a class="fa-solid fa-envelope" href="mailto:riyashet.psy@gmail.com" aria-label="Email"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog" id="first-content" style="background-color: #1d2b3a;">
+        <div class="blog-title white">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title">Closing-Auction Price Prediction with Calibrated Uncertainty</h1>
+                    <p class="author">Riya Shet</p>
+                    <p class="abstract">
+                        An analysis of the Nasdaq closing auction for 200 stocks over 481 trading days, using
+                        Optiver's Kaggle data. It asks where prices are hardest to predict, where a baseline
+                        model fails, why it predicts what it does, and when it can be trusted.
+                    </p>
+                    <div class="info">
+                        <div>
+                            <a href="https://github.com/riyashet-hds/optiver-closing-auction-analysis" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Code <i class="fa-solid fa-code"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://github.com/riyashet-hds/optiver-closing-auction-analysis/blob/main/powerbi/closing_auction.pdf" target="_blank" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">
+                                Power BI report <i class="fa-solid fa-chart-column"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p>LightGBM · SHAP · Conformal prediction · Power BI · Market microstructure</p>
+                </div>
+            </div>
+            <div class="blog-cover">
+                <img class="foreground" src="../assets/projects/optiver/when_to_trust.png" alt="Power BI page showing when the model can be trusted">
+                <img class="background" src="../assets/projects/optiver/when_to_trust.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container blog main first" id="blog-main">
+        <h1>The question</h1>
+        <p class="text">
+            The closing auction sets one price per stock at the end of the trading day. In the last ten minutes, Nasdaq publishes the order imbalance and indicative prices. Optiver asked for each stock's 60-second move relative to an index of all stocks. I wanted to know when that move is hardest to predict, and when a model's prediction deserves trust.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/optiver/auction.png" alt="Power BI page on volatility across the auction">
+        <p class="caption"><b>Figure 1.</b> Volatility peaks at 270 seconds, just before near and far prices are first published at 300 seconds.</p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Baseline and error analysis</h1>
+        <p class="text">
+            I trained LightGBM on days 0-383 and tested it on days 384-480, so it never saw the future. It beat a "predict zero" guess by 1.6% in mean absolute error (5.96 vs 6.06 bps). That small gain is honest: most of a 60-second move is noise. Errors spike in the same window before 300 seconds, and for 20 of 200 stocks the model did worse than predicting zero.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/optiver/why.png" alt="Power BI page on SHAP explanations">
+        <p class="caption"><b>Figure 2.</b> SHAP shows that bid-versus-ask book pressure and the reference-price gap drive most predictions.</p>
+    </div>
+
+    <div class="container blog main">
+        <h1>When to trust the model</h1>
+        <p class="text">
+            Quantile regression with conformal calibration gives an 80% range for each prediction. Acting only on the most confident half cut error by 30%, beating rules based on a stock's past volatility or spread. Coverage failed for some stocks, and I traced this to stocks whose volatility jumped after calibration (r = -0.69). Per-stock calibration, a daily update and volatility scaling lifted the worst stock from 59% to 74%.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>Limitations</h1>
+        <p class="text">
+            The window just before the 300-second release is still under-covered. Calibration cannot fix that; the model would need a signal that anticipates the release. The test period was calmer than training, so results may not hold in a more volatile market.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Riya Shet. Built on the
+                <a href="https://shikun.io/projects/clarity" target="_blank">Clarity Template</a>
+                by <a href="https://shikun.io/" target="_blank">Shikun Liu</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/scripts/site.js"></script>
+</body>
+</html>
