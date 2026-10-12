@@ -39,8 +39,8 @@
                     <p class="author">Riya Shet</p>
                     <p class="abstract">
                         An analysis of the Nasdaq closing auction for 200 stocks over 481 trading days, using
-                        Optiver's Kaggle data. It asks where prices are hardest to predict, where a baseline
-                        model fails, why it predicts what it does, and when it can be trusted.
+                        Optiver's Kaggle data. It measures a baseline model's predictive skill, where it fails, what drives it,
+                        and how its confidence should change position size.
                     </p>
                     <div class="info">
                         <div>
@@ -79,9 +79,14 @@
     </div>
 
     <div class="container blog main">
-        <h1>Baseline and error analysis</h1>
+        <h1>Predictive skill</h1>
         <p class="text">
-            I trained LightGBM on days 0-383 and tested it on days 384-480, so it never saw the future. It beat a "predict zero" guess by 1.6% in mean absolute error (5.96 vs 6.06 bps). That small gain is honest: most of a 60-second move is noise. Errors spike in the same window before 300 seconds, and for 20 of 200 stocks the model did worse than predicting zero.
+            I trained LightGBM on days 0-383 and tested it on days 384-480, so it never saw the future. Its
+            predictions correlate with the actual 60-second moves at 0.17, and the correlation is positive on all
+            97 test days. It calls the direction correctly 54.9% of the time, with an out-of-sample R-squared of
+            2.8%. On mean absolute error, the gain over predicting zero is only 1.6%, because most of a 60-second
+            move is noise. Errors spike just before 300 seconds, and for 20 of 200 stocks the model did worse than
+            predicting zero. The winning Kaggle teams did much better, so this is a baseline, not a competitive model.
         </p>
     </div>
 
@@ -91,9 +96,9 @@
     </div>
 
     <div class="container blog main">
-        <h1>When to trust the model</h1>
+        <h1>Sizing by confidence</h1>
         <p class="text">
-            Quantile regression with conformal calibration gives an 80% range for each prediction. Acting only on the most confident half cut error by 30%, beating rules based on a stock's past volatility or spread. Coverage failed for some stocks, and I traced this to stocks whose volatility jumped after calibration (r = -0.69). Per-stock calibration, a daily update and volatility scaling lifted the worst stock from 59% to 74%.
+            Quantile regression with conformal calibration gives an 80% range for each prediction. Trading only on the most confident half cut error by 30%, beating rules based on a stock's past volatility or spread. Coverage failed for some stocks, and I traced this to stocks whose volatility jumped after calibration (r = -0.69). Per-stock calibration, a daily update and volatility scaling lifted the worst stock from 59% to 74%.
         </p>
     </div>
 
