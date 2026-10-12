@@ -60,8 +60,8 @@
                 </div>
             </div>
             <div class="blog-cover">
-                <img class="foreground" src="../assets/projects/optiver/when_to_trust.png" alt="Power BI page showing when the model can be trusted">
-                <img class="background" src="../assets/projects/optiver/when_to_trust.png" alt="">
+                <img class="foreground" src="../assets/projects/optiver/overview.png" alt="Power BI overview page: forecasts correlate with actual moves on all 97 test days">
+                <img class="background" src="../assets/projects/optiver/overview.png" alt="">
             </div>
         </div>
     </div>
@@ -100,6 +100,11 @@
         <p class="text">
             Quantile regression with conformal calibration gives an 80% range for each prediction. Trading only on the most confident half cut error by 30%, beating rules based on a stock's past volatility or spread. Coverage failed for some stocks, and I traced this to stocks whose volatility jumped after calibration (r = -0.69). Per-stock calibration, a daily update and volatility scaling lifted the worst stock from 59% to 74%.
         </p>
+    </div>
+
+    <div class="container blog main gray">
+        <img src="../assets/projects/optiver/sizing.png" alt="Power BI page on sizing by confidence">
+        <p class="caption"><b>Figure 3.</b> Ranking predictions by the width of their range: the most confident half has 30% lower error.</p>
     </div>
 
     <div class="container blog main">
