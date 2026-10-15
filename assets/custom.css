@@ -158,8 +158,10 @@ h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, .menu a, .title, .btn, .button {
 .about-row .body { flex: 1; max-width: 75ch; }
 .about-row .body p { margin-bottom: 16px; }
 .about-row .body h3 { font-weight: 600; color: var(--ink); margin-top: 6px; }
-.about-row .body ul { padding-left: 0; list-style: none; }
-.about-row .body ul li { margin-bottom: 16px; }
+.about-row .body ul { padding-left: 1.2em; list-style: disc; }
+.about-row .body ul li { margin-bottom: 16px; padding-left: 4px; }
+.about-row .body ul li::marker { color: var(--ink); }
+.about-row .body strong { font-weight: 600; color: var(--ink); }
 
 /* ===================== Projects gallery ===================== */
 .gallery {
